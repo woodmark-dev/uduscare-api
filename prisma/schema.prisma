@@ -1,0 +1,51 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  binaryTargets = ["native"]
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id   String @id @default(uuid())
+  email String  @unique
+  sex String
+  //password is made optional because the google signup/login does not require a password
+  password String
+  firstName String
+  lastName String
+  verificationId String?
+  isEmailVerified Boolean @default(false)
+  appointments Appointments[]
+  dateOfBirth String
+  role String @default("User")
+}
+
+model Appointments{
+  id        Int      @default(autoincrement()) @id
+  department     String
+  description String?
+  createdAt DateTime @default(now())
+  userId  String
+  user User @relation(fields: [userId], references: [id])
+  actualDate String
+  date Dates @relation(fields: [actualDate], references: [appointmentDate])
+  appointmentTime String
+  stage String @default("Doctor Appointment")
+  completed Boolean @default(false)
+  test Boolean @default(false)
+  testDetails String?
+  testResults String?
+  pharmacy Boolean @default(false)
+  pharmacyDetail String?
+}
+
+model Dates {
+  appointmentDate String @id
+  appointments Appointments[]
+}
