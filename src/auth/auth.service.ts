@@ -67,7 +67,6 @@ export class AuthService {
         verificationId,
         dateOfBirth,
         sex,
-        role: "Admin",
       },
     });
 

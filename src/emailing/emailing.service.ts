@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { sendEmail } from './config/emailing.config';
 
-const frontendUrl = 'https://udus-care.vercel.app/';
+const frontendUrl = 'https://uduscare-frontend.vercel.app/';
 
 @Injectable()
 export class EmailingService {
