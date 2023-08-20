@@ -124,7 +124,6 @@ export class AuthService {
       path: '/',
       secure: true,
       sameSite: 'none',
-      domain: 'uduscare-api-11dc38e09e4d.herokuapp.com',
     });
 
     return { message: user.role, statusCode: HttpStatus.CREATED };
