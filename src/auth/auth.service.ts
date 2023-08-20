@@ -124,7 +124,7 @@ export class AuthService {
       path: '/',
       secure: true,
       sameSite: 'none',
-      domain: 'localhost:3000/',
+      domain: 'localhost:3000',
     });
 
     return { message: user.role, statusCode: HttpStatus.CREATED };
