@@ -122,9 +122,6 @@ export class AuthService {
       httpOnly: true,
       maxAge: 28800000,
       path: '/',
-      secure: true,
-      sameSite: 'none',
-      domain: "https://uduscare-frontend.vercel.app/"
     });
 
     return { message: user.role, statusCode: HttpStatus.CREATED };
