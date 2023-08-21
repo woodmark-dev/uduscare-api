@@ -7,7 +7,7 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.use(cookieParser());
-  app.enableCors({ credentials: true, origin: true, exposedHeaders: ['set-cookie'] });
+  app.enableCors({ credentials: true, origin: true, allowedHeaders: ['Access-Control-Allow-Origin', 'Content-Type', 'Authorization'] });
   app.useGlobalPipes(new ValidationPipe());
   await app.listen(process.env.PORT || 3333);
 }
