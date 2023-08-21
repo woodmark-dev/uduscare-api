@@ -123,7 +123,7 @@ export class AuthService {
       maxAge: 28800000,
       path: '/',
       secure: false,
-      sameSite: 'none',
+      sameSite: 'lax',
     });
 
     return { message: user.role, statusCode: HttpStatus.CREATED };
