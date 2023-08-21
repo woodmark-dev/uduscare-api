@@ -122,8 +122,8 @@ export class AuthService {
       httpOnly: true,
       maxAge: 28800000,
       path: '/',
-      secure: false,
-      sameSite: 'strict',
+      secure: true,
+      sameSite: 'none',
     });
 
     return { message: user.role, statusCode: HttpStatus.CREATED };
