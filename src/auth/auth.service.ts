@@ -117,12 +117,7 @@ export class AuthService {
       }),
     };
 
-    response.cookie('auth-cookie', token, {
-      httpOnly: true,
-      path: '/',
-      secure: true,
-      sameSite: 'none',
-    });
+    response.cookie('auth-cookie', token);
 
     return { message: user.role, statusCode: HttpStatus.CREATED };
   }
