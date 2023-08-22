@@ -120,7 +120,6 @@ export class AuthService {
 
     response.cookie('auth-cookie', token, {
       httpOnly: true,
-      maxAge: 28800000,
       path: '/',
       secure: true,
       sameSite: 'none',
