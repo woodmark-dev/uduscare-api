@@ -126,6 +126,10 @@ export class AuthService {
       sameSite: "none",
     });
 
+    response.set({
+      'Access-Control-Allow-Credentials': true, 'Access-Control-Allow-Origin': "*", "Access-Control-Allow-Methods": "GET, PUT, POST, DELETE, UPDATE",
+    })
+
     return { message: user.role, statusCode: HttpStatus.CREATED };
   }
 
