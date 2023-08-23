@@ -124,6 +124,7 @@ export class AuthService {
       secure: true,
       path: '/',
       sameSite: "none",
+      domain: "onrender.com",
     });
 
     return { message: user.role, statusCode: HttpStatus.CREATED };
