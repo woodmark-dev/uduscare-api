@@ -112,12 +112,19 @@ export class AuthService {
 
     const token = {
       role: user.role,
+      expiresIn: "8h",
       access_token: this.jwtService.sign(payload, {
         secret: process.env.JWT_SECRET,
       }),
     };
 
-    response.cookie('auth-cookie', token);
+    response.cookie('auth-cookie', token, {
+      httpOnly: true,
+      maxAge: 288000,
+      secure: true,
+      path: '/',
+      sameSite: "none",
+    });
 
     return { message: user.role, statusCode: HttpStatus.CREATED };
   }

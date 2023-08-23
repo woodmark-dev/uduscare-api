@@ -7,8 +7,8 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.use(cookieParser());
-  app.enableCors({ credentials: true, origin: true });
+  app.enableCors({ credentials: true, origin: ['https://uduscare-frontend.vercel.app'] });
   app.useGlobalPipes(new ValidationPipe());
   await app.listen(process.env.PORT || 3333);
 }
-bootstrap()
+bootstrap();
