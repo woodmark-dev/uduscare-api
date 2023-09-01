@@ -15,7 +15,8 @@ import { AppointmentBody } from './dto/createApDTO';
 
 @Controller('appointments')
 export class AppointmentsController {
-  constructor(private service: AppointmentsService) {}
+  // eslint-disable-next-line prettier/prettier
+  constructor(private service: AppointmentsService) { }
 
   @UseGuards(JwtAuthGuard)
   @Post('add')
@@ -24,7 +25,7 @@ export class AppointmentsController {
       user.role,
       this.service.addAppointment({
         ...appointment,
-        userId: user.userId,
+        userId: user.id,
       }),
     );
   }
@@ -46,7 +47,7 @@ export class AppointmentsController {
   async getPending(@Body() arg: { arg: number }, @User() user) {
     return await this.allowOnlyUser(
       user.role,
-      this.service.getPendingAppointments(arg.arg, user.userId),
+      this.service.getPendingAppointments(arg.arg, user.id),
     );
   }
 
@@ -55,7 +56,7 @@ export class AppointmentsController {
   async getUserComplete(@Body() arg: { arg: number }, @User() user) {
     return await this.allowOnlyUser(
       user.role,
-      this.service.getUserCompletedAppointments(arg.arg, user.userId),
+      this.service.getUserCompletedAppointments(arg.arg, user.id),
     );
   }
 

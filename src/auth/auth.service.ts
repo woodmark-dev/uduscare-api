@@ -98,39 +98,23 @@ export class AuthService {
     }
 
     //get decrypted data
-    const dEmail = await this.decrypt(email);
-    const dFirstName = await this.decrypt(user.firstName);
-    const dLastName = await this.decrypt(user.lastName);
+    // const dEmail = await this.decrypt(email);
+    // const dFirstName = await this.decrypt(user.firstName);
+    // const dLastName = await this.decrypt(user.lastName);
 
     const payload = {
       role: user.role,
-      email: dEmail,
       sub: user.id,
-      firstName: dFirstName,
-      lastName: dLastName,
     };
 
-    const token = {
-      role: user.role,
-      expiresIn: "8h",
-      access_token: this.jwtService.sign(payload, {
-        secret: process.env.JWT_SECRET,
-      }),
-    };
 
-    response.cookie('auth-cookie', token, {
-      httpOnly: true,
-      maxAge: 288000,
-      secure: true,
-      path: '/',
-      sameSite: "none",
-    });
-
-    response.set({
-      'Access-Control-Allow-Credentials': true, 'Access-Control-Allow-Origin': "https://uduscare.onrender.com", "Access-Control-Allow-Methods": "GET, PUT, POST, DELETE, UPDATE, OPTIONS", 'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+    const access_token = this.jwtService.sign(payload, {
+      secret: process.env.JWT_SECRET,
+      expiresIn: process.env.JWT_EXPIRATION,
     })
 
-    return { message: user.role, statusCode: HttpStatus.CREATED };
+
+    return { message: { access_token, role: user.role }, statusCode: HttpStatus.CREATED };
   }
 
   async verifyUserEmail(email: string, verificationId: string) {

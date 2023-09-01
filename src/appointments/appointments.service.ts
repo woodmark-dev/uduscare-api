@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Injectable, HttpStatus, HttpException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateApDTO } from './dto/createApDTO';
@@ -8,7 +9,7 @@ export class AppointmentsService {
   constructor(
     private prismaService: PrismaService,
     private encryption: EncryptionService,
-  ) {}
+  ) { }
 
   //User level
   //Adding appointments
